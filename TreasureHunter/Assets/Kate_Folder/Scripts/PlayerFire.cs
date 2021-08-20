@@ -22,7 +22,7 @@ public class PlayerFire : MonoBehaviour
         //만약에 fire1 버트을 누르면
         if (Input.GetButtonDown("Fire1"))
         {
-            //총알공장에서 총알을 나든다. 
+            //총알공장에서 총알을 놓아둔다. 
             GameObject bullet = Instantiate(bulletFactory);
             //만들어진 총알의 앞방향을 총구에 앞방향으로 셋팅
             bullet.transform.forward = firePos.forward; //만약에 파란 화살표가 자신쪽으로 향해 있을땐 forward에 -를 붙인다. 
