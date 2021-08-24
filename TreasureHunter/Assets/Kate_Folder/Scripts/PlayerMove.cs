@@ -23,7 +23,6 @@ public class PlayerMove : MonoBehaviour
     //최대 점프횟수
     public int maxJumpCount = 2;
 
-
     // Start is called before the first frame update
     void Start()
     {

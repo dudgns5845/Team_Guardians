@@ -28,8 +28,7 @@ public class PlayerFire : MonoBehaviour
             bullet.transform.forward = firePos.forward; //만약에 파란 화살표가 자신쪽으로 향해 있을땐 forward에 -를 붙인다. 
             //생성된 총알을 총구에 놓는다.
             bullet.transform.position = firePos.position;
-
-
         }
+
     }
 }
