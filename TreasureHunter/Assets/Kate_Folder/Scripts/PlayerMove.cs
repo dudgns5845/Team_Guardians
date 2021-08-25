@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     //속력
     public float speed = 5;
+    public float runspeed = 10;
     //Character Controller
     CharacterController cc;
 
@@ -59,6 +60,17 @@ public class PlayerMove : MonoBehaviour
 
         //위 방향으로 움직이게 만드세요. P = P0+VT
         cc.Move(dir * speed * Time.deltaTime);
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = runspeed;
+
+        }
+        else
+        {
+            speed = speed;
+        }
+
     }
     void Jump(out float dirY)
     {

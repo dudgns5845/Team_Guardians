@@ -63,13 +63,13 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsGround();
-        TryJump();
-        TryRun();
-        TryCrouch();
-        Move();
-        CameraRotation();
-        CharacterRotation();
+        //IsGround();
+        //TryJump();
+        //TryRun();
+        //TryCrouch();
+        //Move();
+        //CameraRotation();
+        //CharacterRotation();
     }
     // 지면 체크
     private void IsGround()
@@ -89,7 +89,7 @@ public class PlayerCtrl : MonoBehaviour
     private void Jump()
     {
         if (isCrouch)
-            Crouch();
+            //Crouch();
 
         myRigid.velocity = transform.up * jumpForce;
     }
@@ -110,7 +110,7 @@ public class PlayerCtrl : MonoBehaviour
     private void Running()
     {
         if (isCrouch)
-            Crouch();
+           // Crouch();
 
         isRun = true;
         applySpeed = runSpeed;
