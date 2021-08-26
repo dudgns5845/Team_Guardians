@@ -15,9 +15,15 @@ public class ObjRotate : MonoBehaviour
     public bool canRotH;
     public bool canRotV;
 
+    //진동크기
+    public float amp = 1;
+    public float freq = 2;
+    float tempY;
+
     // Start is called before the first frame update
     void Start()
     {
+        tempY = transform.localPosition.y;
         //현재 게임오브젝트의 각도를 mx.my에 셋팅
         mx = transform.localEulerAngles.x;
         my = transform.localEulerAngles.y;
@@ -56,5 +62,14 @@ public class ObjRotate : MonoBehaviour
         //누적된 회전값으로 게임오브젝트의 각도를 셋팅하자.
         transform.localEulerAngles = new Vector3(-mx, my, 0);
 
+        //만약 카메라라면 사용
+        if (gameObject.tag == "MainCamera")
+        {
+            if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+            {
+                transform.localPosition = new Vector3(0, tempY + Mathf.Sin(freq * Time.time), 0);
+            }
+
+        }
     }
 }

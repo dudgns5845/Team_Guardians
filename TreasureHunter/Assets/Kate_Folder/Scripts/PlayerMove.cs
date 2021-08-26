@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    //속력
-    public float speed = 5;
-    public float runspeed = 10;
+    
     //Character Controller
     CharacterController cc;
 
@@ -18,11 +16,23 @@ public class PlayerMove : MonoBehaviour
 
     //중력
     float gravity = -20;
+float playerGravity = 0;       //플레이어 중력적용에 필요한 변수
     //점수횟수
     int jumpCount;
 
     //최대 점프횟수
     public int maxJumpCount = 2;
+
+    //속력
+    public float speed = 6;
+    public float runspeed = 10;
+    public float moveSpeed = 6.0f;        //이동 속도
+    public float backmoveSpeed = 5.0f;    //뒤로가는 속도
+
+   
+    Vector3 moveDir = Vector3.zero; //플레이어 이동방향
+
+    CharacterController playerController;
 
     // Start is called before the first frame update
     void Start()
@@ -35,18 +45,18 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    //if(input.GetkeyDown(KeyCode.W))
+    //{
+    //    //방향을 왼쪽
+    //}
+    //if(Input .GetKeyUp .A)
+    //{
+    //    //왼쪽으로 방향을 없애고
+    //}
 
-        //if(input.GetkeyDown(KeyCode.W))
-        //{
-        //    //방향을 왼쪽
-        //}
-        //if(Input .GetKeyUp .A)
-        //{
-        //    //왼쪽으로 방향을 없애고
-        //}
-
-        //A.D좌우 
-        float h = Input.GetAxis("Horizontal");
+    //A.D좌우 
+    float h = Input.GetAxis("Horizontal");
         //W.S 앞뒤
         float v = Input.GetAxis("Vertical");
 
@@ -93,5 +103,6 @@ public class PlayerMove : MonoBehaviour
         dirY = yVelocity;    //1.0.0 -> 1,-1,0
         //y속도를 중력만큼 더해준다. 
         yVelocity += gravity * Time.deltaTime;
+
     }
 }
