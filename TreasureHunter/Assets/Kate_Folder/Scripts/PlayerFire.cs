@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
+    
 
     //총알공장
     public GameObject bulletFactory;
     //총구
     public Transform firePos;
+
+    public ParticleSystem gun;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,7 @@ public class PlayerFire : MonoBehaviour
         //만약에 fire1 버트을 누르면
         if (Input.GetButtonDown("Fire1"))
         {
+            gun.Play();
             //총알공장에서 총알을 놓아둔다. 
             GameObject bullet = Instantiate(bulletFactory);
             //만들어진 총알의 앞방향을 총구에 앞방향으로 셋팅

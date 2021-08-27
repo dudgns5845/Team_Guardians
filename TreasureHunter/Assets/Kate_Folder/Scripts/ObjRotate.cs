@@ -19,11 +19,12 @@ public class ObjRotate : MonoBehaviour
     public float amp = 1;
     public float freq = 2;
     float tempY;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         tempY = transform.localPosition.y;
+        
         //현재 게임오브젝트의 각도를 mx.my에 셋팅
         mx = transform.localEulerAngles.x;
         my = transform.localEulerAngles.y;
@@ -67,7 +68,8 @@ public class ObjRotate : MonoBehaviour
         {
             if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
             {
-                transform.localPosition = new Vector3(0, tempY + Mathf.Sin(freq * Time.time), 0);
+                transform.localPosition = new Vector3(0, tempY + amp*Mathf.Sin(freq * Time.time), 0);
+               
             }
 
         }
