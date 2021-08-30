@@ -89,14 +89,14 @@ float playerGravity = 0;       //플레이어 중력적용에 필요한 변수
         if (Input.GetButtonDown("Jump"))       //|| Input.GetKeyDown(KeyCode.Space))
         {
             //점프 횟수가 최대횟수 점프 보다 작으면
-            if (jumpCount < maxJumpCount)
+            if (jumpCount < 1)
             {
                 //y속도를 jumpPower로 한다. 
                 yVelocity = jumpPower;
                 jumpCount++;  //2
 
             }
-
+            jumpCount = 0;
         }
 
         //dirY에 y속도를 넣는다. 
