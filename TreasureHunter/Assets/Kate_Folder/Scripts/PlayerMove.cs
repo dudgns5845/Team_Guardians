@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
 
     //중력
     float gravity = -20;
-float playerGravity = 0;       //플레이어 중력적용에 필요한 변수
+    float playerGravity = 0;       //플레이어 중력적용에 필요한 변수
     //점수횟수
     int jumpCount;
 
@@ -73,12 +73,12 @@ float playerGravity = 0;       //플레이어 중력적용에 필요한 변수
 
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            speed = runspeed;
+            speed = 50;
 
         }
         else
         {
-            speed = speed;
+            speed = 30;
         }
 
     }
