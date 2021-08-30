@@ -36,7 +36,14 @@ public class PlayerMove_Rio : MonoBehaviour
         dir.y = Jump();
 
 
-
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed = 15;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = 5;
+        }
 
         //charactercontroller는 move함수로 움직여야 충돌 반응이 가능하다
         controller.Move(dir * speed * Time.deltaTime);
@@ -57,7 +64,7 @@ public class PlayerMove_Rio : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
 
-            if (jumpCnt < 2)
+            if (jumpCnt < 1)
             {
                 jumpCnt++;
                 ySpeed = jumpPower;
