@@ -13,9 +13,9 @@ public class Fire_Rio : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            
+            LayFire();
         }
     }
 

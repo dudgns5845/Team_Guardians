@@ -97,8 +97,6 @@ public class enemy_Rio : MonoBehaviour
 
         // agent 를 이용해서 이동하기
         agent.destination = target.transform.position;
-
-
         if (distance < attackRange)
         {
             // 2. 상태를 공격으로 전환하고 싶다.
@@ -115,6 +113,9 @@ public class enemy_Rio : MonoBehaviour
     public float attackDelayTime = 2;
     private void Attack()
     {
+        Vector3 dir = target.transform.position - transform.position;
+        dir.y = 0;
+        transform.forward = dir;
         // 일정시간에 한번씩 공격하고 싶다.
         // 1. 시간이 흘렀으니까
         currentTime += Time.deltaTime;
@@ -149,7 +150,8 @@ public class enemy_Rio : MonoBehaviour
     private IEnumerator Damage(Vector3 shootDirection)
     {
         shootDirection.y = 0;
-        transform.position += shootDirection * 2;
+        //transform.position += shootDirection * 2;
+        transform.position = Vector3.Lerp(transform.position, shootDirection * 4, Time.deltaTime); 
         m_state = EnemyState.DAMAGE;
         // animation 의 상태를 피격으로
         anim.SetTrigger("Damage");
