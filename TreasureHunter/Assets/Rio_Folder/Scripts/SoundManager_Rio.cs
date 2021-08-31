@@ -46,7 +46,11 @@ public class SoundManager_Rio : MonoBehaviour
         BGM_player.clip = BGM_clips[(int)type];
         BGM_player.Play();
     }
+    public void BGM_STOP()
+    {
+        BGM_player.Stop();
 
+    }
     public void EFT_PLAY(EFT_STATE type)
     {
         AudioClip clip = BGM_clips[(int)type];
