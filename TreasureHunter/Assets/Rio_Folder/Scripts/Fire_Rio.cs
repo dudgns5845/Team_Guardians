@@ -9,11 +9,11 @@ using UnityEngine;
 public class Fire_Rio : MonoBehaviour
 {
     public Transform FirePos;
-    public GameObject fragmentEFT;
+    public ParticleSystem fragmentEFT;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             LayFire();
         }
