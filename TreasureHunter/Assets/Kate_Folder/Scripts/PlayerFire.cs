@@ -13,18 +13,31 @@ public class PlayerFire : MonoBehaviour
 
     public ParticleSystem gun;
 
+    public Animator anim;
+    public Animator fireAnim;
+
+    public AnimatorOverrideController gunAnimController;
+    public AnimatorOverrideController swordAnimController;
     // Start is called before the first frame update
     void Start()
     {
-
+        fireAnim.speed = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetButtonDown("Fire2"))
+        {
+            anim.runtimeAnimatorController = swordAnimController;
+        }
         //만약에 fire1 버트을 누르면
         if (Input.GetButtonDown("Fire1"))
         {
+            anim.Play("Idle");
+            // 이동중일때는 총 발사 안되도록
+            fireAnim.SetTrigger("Fire");
+            
             gun.Play();
             //총알공장에서 총알을 놓아둔다. 
             GameObject bullet = Instantiate(bulletFactory);

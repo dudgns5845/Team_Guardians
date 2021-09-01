@@ -34,6 +34,8 @@ public class PlayerMove : MonoBehaviour
 
     CharacterController playerController;
 
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,9 +58,11 @@ public class PlayerMove : MonoBehaviour
     //}
 
     //A.D좌우 
-    float h = Input.GetAxis("Horizontal");
+        float h = Input.GetAxis("Horizontal");
         //W.S 앞뒤
         float v = Input.GetAxis("Vertical");
+
+        anim.SetFloat("Speed", v * v + h * h);
 
         //방향을 정하고
         Vector3 dirH = transform.right * h;
@@ -73,12 +77,12 @@ public class PlayerMove : MonoBehaviour
 
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            speed = 50;
+            speed = runspeed;
 
         }
         else
         {
-            speed = 30;
+            speed = moveSpeed;
         }
 
     }
