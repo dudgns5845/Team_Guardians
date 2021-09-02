@@ -13,7 +13,7 @@ public class Fire_Rio : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             LayFire();
         }
