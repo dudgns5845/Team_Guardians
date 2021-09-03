@@ -23,8 +23,8 @@ public class CamRotate : MonoBehaviour
     {
         //사용자의 마우스를 입력을 받아 물체를 회전시키고 싶다.
         //1. 마우스를 입력을 받는다
-        float mouse_X = Input.GetAxis("Mouse_X");
-        float mouse_Y = Input.GetAxis("Mouse_Y");
+        float mouse_X = Input.GetAxis("Mouse X");
+        float mouse_Y = Input.GetAxis("Mouse Y");
 
         //1-1 회전값 변수에 마우스 입력값 만큼 미리 누적시킨다. 
         mx += mouse_X * rotSpeed * Time.deltaTime;

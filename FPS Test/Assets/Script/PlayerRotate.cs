@@ -21,7 +21,7 @@ public class PlayerRotate : MonoBehaviour
         //사용자의 마우스 입력을 받아 플레이어를 회전시키고 싶다. 
 
         //1. 좌우 마우스 입력을 받는다. 
-        float mouse_X = Input.GetAxis("Mouse_X");
+        float mouse_X = Input.GetAxis("Mouse X");
         //1-1 회전값 변수에 마우스 입력값만큼 미리 누적시킨다. 
         mx += mouse_X * rotSpeed * Time.deltaTime;
         //2. 회전 방향으로 물체를 회전시킨다. 
