@@ -38,11 +38,11 @@ public class PlayerMove_Rio : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            speed = 15;
+            speed = 60;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            speed = 5;
+            speed = 50;
         }
 
         //charactercontroller는 move함수로 움직여야 충돌 반응이 가능하다

@@ -113,18 +113,32 @@ public class enemy_Rio : MonoBehaviour
     public float attackDelayTime = 2;
     private void Attack()
     {
+        
         Vector3 dir = target.transform.position - transform.position;
         dir.y = 0;
         transform.forward = dir;
         // 일정시간에 한번씩 공격하고 싶다.
-        // 1. 시간이 흘렀으니까
+        // 1. 시간이 흘렀으니까w
         currentTime += Time.deltaTime;
         // 2. 공격시간이 됐으니까
         // -> 만약 경과시간이 공격대기시간을 초과하였다면
         if (currentTime > attackDelayTime)
         {
-            // 3. 공격하고 싶다. (print)
-            anim.SetTrigger("Attack");
+            print("ATTACK호출");
+            int rand = Random.Range(0, 3);
+            switch (rand)
+            {
+                case 0:
+                    anim.SetTrigger("Attack00");
+                    break;
+                case 1:
+                    anim.SetTrigger("Attack01");
+                    break;
+                case 2:
+                    anim.SetTrigger("Attack02");
+                    break;
+
+            }
             currentTime = 0;
         }
 
