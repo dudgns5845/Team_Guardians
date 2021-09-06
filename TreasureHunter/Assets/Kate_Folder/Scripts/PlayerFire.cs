@@ -108,6 +108,14 @@ public class PlayerFire : MonoBehaviour
                 //가져온 컴포넌트의 기능중 Play 실행
                 audio.Play();
 
+                // 맞은 녀석이 enemy라면
+                enemy_Rio enemy = hitInfo.transform.GetComponent<enemy_Rio>();
+                if (enemy) //참이면
+                {
+                    // enemy에게 맞았다는 것을 알려준다
+                    enemy.OnDamageProcess(ray.direction);
+                }
+
             }
 
             if (isFiring)
