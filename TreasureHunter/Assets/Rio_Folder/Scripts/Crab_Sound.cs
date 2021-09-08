@@ -13,7 +13,16 @@ public class Crab_Sound : MonoBehaviour
 
     public void CrabSound(int idx)
     {
-        AudioClip clip = clips[idx];
-        player.PlayOneShot(clip);
+        if (player.isPlaying && idx == 0)
+        {
+            return;
+        }
+        else
+        {
+            player.Stop();
+            player.clip = clips[idx];
+            player.Play();
+        }
+       
     }
 }

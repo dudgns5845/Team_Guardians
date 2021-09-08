@@ -113,7 +113,9 @@ public class PlayerMove : MonoBehaviour
 
     public Animator anim;
 
-    public float speed = 6.0F;
+    public float walkSpeed = 70f;
+    public float runSpeed = 100f;
+    float speed = 70f;
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
@@ -133,11 +135,11 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                speed = 30f;
+                speed = runSpeed;
             }
             else
             {
-                speed = 60f;
+                speed = walkSpeed;
             }
 
             moveDirection *= speed;
