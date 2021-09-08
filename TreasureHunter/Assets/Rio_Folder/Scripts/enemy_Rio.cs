@@ -36,7 +36,7 @@ public class enemy_Rio : MonoBehaviour
 
     void Update()
     {
-        print("현재상태 : " + m_state);
+        
 
         // 적의 기본 상태(목차)를 구성하고 싶다.
         // 만약 적의 상태가 Idle 이라면
@@ -124,7 +124,7 @@ public class enemy_Rio : MonoBehaviour
         // -> 만약 경과시간이 공격대기시간을 초과하였다면
         if (currentTime > attackDelayTime)
         {
-            print("ATTACK호출");
+           
             int rand = Random.Range(0, 3);
             switch (rand)
             {
