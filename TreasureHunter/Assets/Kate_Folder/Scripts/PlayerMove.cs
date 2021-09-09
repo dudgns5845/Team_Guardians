@@ -115,6 +115,7 @@ public class PlayerMove : MonoBehaviour
     public Animator anim;
 
     public float speed = 6.0F;
+    public float runspeed = 10;
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
@@ -130,6 +131,15 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = runspeed;
+
+        }
+        else
+        {
+            speed = speed;
+        }
 
         //현재 플레이ㅓ hp(%)를 hp 슬라이더의 value 에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
