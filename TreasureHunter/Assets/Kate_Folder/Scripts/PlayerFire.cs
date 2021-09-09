@@ -29,6 +29,12 @@ public class PlayerFire : MonoBehaviour
     public GameObject[] flashes;
     int curFlash = 0;
     bool isFiring = false;
+
+    //무기 아이콘 스프라이트 변수 
+    public GameObject weapon01;
+    public GameObject weapon02;
+
+    //
     // Start is called before the first frame update
     void Start()
     {
@@ -43,12 +49,21 @@ public class PlayerFire : MonoBehaviour
             gunObj.SetActive(true);
             swordObj.SetActive(false);
             anim.runtimeAnimatorController = gunAnimController;
+
+            //1번 스프라이트는 활서오하 되고 2번 스프라이트는 비활성화 된다. 
+            weapon01.SetActive(true);
+            weapon02.SetActive(false);
+
         }
         if(Input .GetKeyDown(KeyCode.Alpha2))
         {
             swordObj.SetActive(true);
             gunObj.SetActive(false);
             anim.runtimeAnimatorController = swordAnimController;
+
+            //1번 스프라이트는 비활성화 되고, 2번 스프라이트는 비활성화 된다
+            weapon01.SetActive(false);
+            weapon02.SetActive(true);
         }
 
         //만약에 fire1 버트을 누르면

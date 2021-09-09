@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -117,8 +118,22 @@ public class PlayerMove : MonoBehaviour
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
+
+    //플레이어 체력 변수 
+    public int hp = 20;
+
+    //최대 체력 변수 
+    int maxHP = 20;
+
+    //hp 슬라이더 변수 
+    public Slider hpSlider;
+
     void Update()
     {
+
+        //현재 플레이ㅓ hp(%)를 hp 슬라이더의 value 에 반영한다. 
+        hpSlider.value = (float)hp / (float)maxHP;
+
         CharacterController controller = GetComponent<CharacterController>();
         if (controller.isGrounded)
         {
