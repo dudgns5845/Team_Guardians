@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordSound : MonoBehaviour
+public class Sound : MonoBehaviour
 {
     //칼사운트 클립을 추가하고 
     public List<AudioClip> SwordSoundClips;
