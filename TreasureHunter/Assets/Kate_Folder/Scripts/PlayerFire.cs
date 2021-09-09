@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 // 칼휘두르기
 // -> 3개 액션중 랜덤으로 1개 선택해서 그녀석 재생하게 하기
 public class PlayerFire : MonoBehaviour
 {
+    public GameObject aimImg;
+
     public GameObject gunObj;
     public GameObject swordObj;
 
@@ -29,6 +32,10 @@ public class PlayerFire : MonoBehaviour
     public GameObject[] flashes;
     int curFlash = 0;
     bool isFiring = false;
+
+    public GameObject weapon01;
+    public GameObject weapon02;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,17 +45,30 @@ public class PlayerFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+
+            aimImg.SetActive(true);
             gunObj.SetActive(true);
             swordObj.SetActive(false);
             anim.runtimeAnimatorController = gunAnimController;
+
+            //1번 스프라이트는 활성화되고, 2번 스프라이트는 비활성화 된다. 
+            weapon01.SetActive(true);
+            weapon02.SetActive(false);
         }
-        if(Input .GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+
+            aimImg.SetActive(false);
             swordObj.SetActive(true);
             gunObj.SetActive(false);
             anim.runtimeAnimatorController = swordAnimController;
+
+            //만일 키보드의 숫자키2의 입력을 받으면, 총을 칼로 변경한다. 
+            weapon01.SetActive(false);
+            weapon02.SetActive(true);
         }
 
         //만약에 fire1 버트을 누르면
@@ -80,18 +100,18 @@ public class PlayerFire : MonoBehaviour
             //Ray를 발사시켜서 어딘가에 부딪혔다면
             if (Physics.Raycast(ray, out hitInfo, 100, ~layer))
             {
-                
+
                 //만든 효과를 맞은위치에 놓는다.
                 fragmentEft.transform.position = hitInfo.point;
 
                 //만든효과이 앞방향으르 부딪힌 면의 수직맥터(Normal백터)로 한다. 
                 fragmentEft.transform.forward = hitInfo.normal;
-                
+
                 //맞은 효과에서 ParticleSystem컴포넌트 가져오자
                 ParticleSystem ps = fragmentEft.GetComponent<ParticleSystem>();
 
                 //가져온 컴포넌트의 기능중 Play실행
-               ps.Play();
+                ps.Play();
 
                 ////맞은 녀석이 Enmey라면
                 //Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
