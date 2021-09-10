@@ -9,7 +9,7 @@ public class ObjRotate : MonoBehaviour
     float my;
 
     //회전속력
-    float rotSpeed = 150;
+    public float rotSpeed =200;
 
     //회전 가능여부
     public bool canRotH;

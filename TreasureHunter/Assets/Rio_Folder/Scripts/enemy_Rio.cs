@@ -222,31 +222,31 @@ public class enemy_Rio : MonoBehaviour
     private void Die()
     {
         // 2초정도 대기하고 
-        currentTime += Time.deltaTime;
-        if (currentTime > 2)
-        {
-            // 아래로 내려가도록 하자.
-            // P = P0 + vt
-            Vector3 vt = Vector3.down * downSpeed * Time.deltaTime;
-            Vector3 P0 = transform.position;
-            Vector3 P = P0 + vt;
-            transform.position = P;
+        //currentTime += Time.deltaTime;
+        //if (currentTime > 2)
+        //{
+        //    // 아래로 내려가도록 하자.
+        //    // P = P0 + vt
+        //    Vector3 vt = Vector3.down * downSpeed * Time.deltaTime;
+        //    Vector3 P0 = transform.position;
+        //    Vector3 P = P0 + vt;
+        //    transform.position = P;
 
-            // 완전히 없어지면 제거하자
-            // 만약 나의 위치가 -1 보다 작아지면
-            if (P.y <= -1)
-            {
-                // 제거하자
-                // 오브젝트풀에 다시 넣어줘야 한다.
-                // 1. EnemyManager 객체(인스턴스, 변수) 가 있어야한다.
-                //EnemyManager em = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
-                // 2. 오브젝트풀 있어야 한다.
-                // 3. 풀에 삽입이 가능하다.
-                //EnemyManager.Instance.enemyPool.Add(gameObject);
-                // 4. 나를 비활성화시켜야 한다.
-                gameObject.SetActive(false);
-                //Destroy(gameObject);
-            }
-        }
+        //    // 완전히 없어지면 제거하자
+        //    // 만약 나의 위치가 -1 보다 작아지면
+        //    if (P.y <= -1)
+        //    {
+        //        // 제거하자
+        //        // 오브젝트풀에 다시 넣어줘야 한다.
+        //        // 1. EnemyManager 객체(인스턴스, 변수) 가 있어야한다.
+        //        //EnemyManager em = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+        //        // 2. 오브젝트풀 있어야 한다.
+        //        // 3. 풀에 삽입이 가능하다.
+        //        //EnemyManager.Instance.enemyPool.Add(gameObject);
+        //        // 4. 나를 비활성화시켜야 한다.
+        //        gameObject.SetActive(false);
+        //        //Destroy(gameObject);
+        //    }
+        //}
     }
 }

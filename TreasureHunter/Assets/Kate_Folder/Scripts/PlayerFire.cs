@@ -37,7 +37,10 @@ public class PlayerFire : MonoBehaviour
     //Crosshair ±¸Çö
     public GameObject Crosshair;
 
+
     
+
+    //
     // Start is called before the first frame update
     void Start()
     {

@@ -8,7 +8,6 @@ using Cinemachine;
 public class DirectorAction_Rio : MonoBehaviour
 {
     PlayableDirector pd;
-    public Camera targetCam;
     
     private void Start()
     {
@@ -18,7 +17,7 @@ public class DirectorAction_Rio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        print(pd.time);
         if(pd.time >= pd.duration)
         {
             print("场车促绊 场车绢!!!");
