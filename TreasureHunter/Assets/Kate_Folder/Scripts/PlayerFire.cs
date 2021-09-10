@@ -34,6 +34,9 @@ public class PlayerFire : MonoBehaviour
     public GameObject weapon01;
     public GameObject weapon02;
 
+    //Crosshair 구현
+    public GameObject Crosshair;
+
     //
     // Start is called before the first frame update
     void Start()
@@ -50,9 +53,12 @@ public class PlayerFire : MonoBehaviour
             swordObj.SetActive(false);
             anim.runtimeAnimatorController = gunAnimController;
 
-            //1번 스프라이트는 활서오하 되고 2번 스프라이트는 비활성화 된다. 
+            //1번 스프라이트는 활성화 되고 2번 스프라이트는 비활성화 된다. 
             weapon01.SetActive(true);
             weapon02.SetActive(false);
+
+            //1번 눌렀을 때 Crosshair 활성화되고
+            Crosshair.SetActive(true);
 
         }
         if(Input .GetKeyDown(KeyCode.Alpha2))
@@ -64,6 +70,9 @@ public class PlayerFire : MonoBehaviour
             //1번 스프라이트는 비활성화 되고, 2번 스프라이트는 비활성화 된다
             weapon01.SetActive(false);
             weapon02.SetActive(true);
+
+            //2번 눌렀을 때 Crosshair 비활성화된다
+            Crosshair.SetActive(false);
         }
 
         //만약에 fire1 버트을 누르면
