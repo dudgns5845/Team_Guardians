@@ -132,15 +132,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            speed = runSpeed;
-
-        }
-        else
-        {
-            speed = walkSpeed;
-        }
+       
 
         //현재 플레이ㅓ hp(%)를 hp 슬라이더의 value 에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
@@ -157,13 +149,14 @@ public class PlayerMove : MonoBehaviour
 
             anim.SetFloat("Speed", v * v + h * h);
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                speed = 30f;
+                speed = runSpeed;
+
             }
             else
             {
-                speed = 60f;
+                speed = walkSpeed;
             }
 
             moveDirection *= speed;
