@@ -135,6 +135,7 @@ public class PlayerMove : MonoBehaviour
 
     public void DamangeAction(int damage)
     {
+
         //에너미 공격력만큼 플레이어의 체력을 깍는다 
         hp -= damage;
         //만일 플레이어의 체력이 0보다 크면 피격효과를 출력한다. 
@@ -170,7 +171,12 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-       
+
+        //게임 상태가 '게임중' 상태일 대만 조작할 수 잇게 한다. 
+        if (GameManager.gm.gState != GameManager.GameState.Run)
+        {
+            return;
+        }
 
         //현재 플레이ㅓ hp(%)를 hp 슬라이더의 value 에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;

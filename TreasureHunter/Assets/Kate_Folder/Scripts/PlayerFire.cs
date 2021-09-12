@@ -50,6 +50,12 @@ public class PlayerFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //게임 상태가 '게임중' 상태일 대만 조작할 수 잇게 한다. 
+        if (GameManager.gm.gState != GameManager.GameState.Run)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             gunObj.SetActive(true);
