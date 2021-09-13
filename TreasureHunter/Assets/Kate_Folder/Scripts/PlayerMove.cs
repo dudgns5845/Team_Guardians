@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
-    #region before code
+    //#region before code
     ////Character Controller
     //CharacterController cc;
 
@@ -110,7 +110,7 @@ public class PlayerMove : MonoBehaviour
     //    yVelocity += gravity * Time.deltaTime;
 
     //}
-    #endregion
+    //#endregion
 
     public Animator anim;
 
@@ -122,7 +122,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
 
     //플레이어 체력 변수 
-    public float hp = 100;
+    public int hp = 20;
 
     //최대 체력 변수 
     int maxHP = 20;
@@ -154,18 +154,6 @@ public class PlayerMove : MonoBehaviour
 
             //피격 UI를 비활성화 한다. 
             hiteffect.SetActive(false);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        AudioSource eft_player = GetComponent<AudioSource>();
-        AudioClip eft_sound = eft_player.clip;
-        if(other.tag == "Weapon")
-        {
-            eft_player.PlayOneShot(eft_sound);
-            DamangeAction(5);
-            print(hp);
         }
     }
 
