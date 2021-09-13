@@ -20,8 +20,17 @@ public class DirectorAction_Rio : MonoBehaviour
         
         if(pd.time >= pd.duration)
         {
-           
-            SceneManager.LoadScene(2);
+
+            if (SceneManager.GetActiveScene().name == "Scene_01_Cinema")
+            {
+                SceneManager.LoadScene(2);
+            }
+            if (SceneManager.GetActiveScene().name == "Scene_03_Cinema")
+            {
+                SceneManager.LoadScene(4);
+            }
+
+
         }
     }
 }
