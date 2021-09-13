@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    float currTime;
     //게임 상태 UI 변수
     public GameObject gameLabel;
 
@@ -115,7 +116,7 @@ public class GameManager : MonoBehaviour
         //상태 텍스트의 내용을 "Go!"로 한다. 
         gameText.text = "Go!";
 
-        //0.5초간 대기하낟.. 
+        //0.5초간 대기한다.. 
         yield return new WaitForSeconds(0.5f);
 
         //성태 텍스트를 비활성화 한다. 
@@ -128,6 +129,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // 시간이 흐르게 하자
+        //currTime += Time.deltaTime;
+
+        //if (currTime > )
+
         //만일 플레이어의 hp가 0 이하라면....
         if (player. hp <=0)
         {
@@ -140,14 +147,16 @@ public class GameManager : MonoBehaviour
             //상태텍스트의 내용을 "게임오버"로 한다. 
             gameText.text = "Game Over";
 
+            
+
             //상태 텍스트이 색상을 붉은 색으로 한다. 
             gameText.color = new Color32(255, 0, 0, 255);
 
             //상태 텍스트의 자식 오브젝트의 트렌스폼 컴포넌트를 가져온다
-            Transform buttons = gameText.transform.GetChild(0);
+           Transform buttons = gameText.transform.GetChild(0);
 
             //버튼 오브젝트를 활성화한다
-            buttons.gameObject.SetActive(true);
+           buttons.gameObject.SetActive(true);
 
             //마우스 활성화 함수를 실행한다.
             //Cursorlock이라는 스크립트를 불러오기
