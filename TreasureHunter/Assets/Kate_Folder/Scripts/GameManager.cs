@@ -139,6 +139,12 @@ public class GameManager : MonoBehaviour
             //상태 텍스트이 색상을 붉은 색으로 한다. 
             gameText.color = new Color32(255, 0, 0, 255);
 
+            //상태 텍스트의 자식 오브젝트의 트렌스폼 컴포넌트를 가져온다
+            Transform buttons = gameText.transform.GetChild(0);
+
+            //버튼 오브젝트를 활성화한다
+            buttons.gameObject.SetActive(true);
+
             //상태를 '게임오버' 상태로 변경한다. 
             gState = GameState.GameOver;
         }
