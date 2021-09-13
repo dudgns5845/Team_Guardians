@@ -159,12 +159,16 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+<<<<<<< HEAD
 
         //게임 상태가 '게임중' 상태일 대만 조작할 수 잇게 한다. 
         if (GameManager.gm.gState != GameManager.GameState.Run)
         {
             return;
         }
+=======
+       
+>>>>>>> parent of 986b116 (Upload Alpha)
 
         //현재 플레이ㅓ hp(%)를 hp 슬라이더의 value 에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
