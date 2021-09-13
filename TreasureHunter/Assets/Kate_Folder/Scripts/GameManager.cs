@@ -81,6 +81,9 @@ public class GameManager : MonoBehaviour
         Application.Quit(); 
     }
 
+    public GameObject cursorlock;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,6 +104,7 @@ public class GameManager : MonoBehaviour
 
         //플레이어 오브젝트를 찾은 수 플레이어의 PlayerMove 컴포넌트 받아오기
         player = GameObject.Find("Player").GetComponent<PlayerMove>();
+
 ;    }
 
     IEnumerator ReadyToStart()
@@ -145,6 +149,11 @@ public class GameManager : MonoBehaviour
             //버튼 오브젝트를 활성화한다
             buttons.gameObject.SetActive(true);
 
+            //마우스 활성화 함수를 실행한다.
+            //Cursorlock이라는 스크립트를 불러오기
+           Cursorlock_Rio cl= cursorlock.GetComponent<Cursorlock_Rio>();
+            //그 안에 있는 커서온을 실행시키기
+            cl.CursorOn();
             //상태를 '게임오버' 상태로 변경한다. 
             gState = GameState.GameOver;
         }
