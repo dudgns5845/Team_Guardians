@@ -17,10 +17,10 @@ public class DirectorAction_Rio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(pd.time);
+        
         if(pd.time >= pd.duration)
         {
-            print("场车促绊 场车绢!!!");
+           
             SceneManager.LoadScene(2);
         }
     }
