@@ -126,7 +126,7 @@ public class Rikayon : MonoBehaviour
         attackCnt += Time.deltaTime;
         if (attackCnt > attackTime)
         {
-            print("ATTACK 호출");
+          
             int idx = Random.Range(1, 6);
             animator.SetTrigger("Attack_" + idx);
             attackCnt = 0;
