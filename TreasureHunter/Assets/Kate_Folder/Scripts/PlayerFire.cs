@@ -111,7 +111,7 @@ public class PlayerFire : MonoBehaviour
             int layer = 1 << LayerMask.NameToLayer("Player");
 
             //Ray를 발사시켜서 어딘가에 부딪혔다면
-            if (Physics.Raycast(ray, out hitInfo, 100, ~layer))
+            if (Physics.Raycast(ray, out hitInfo, 1000, ~layer))
             {
                 
                 //만든 효과를 맞은위치에 놓는다.
@@ -124,7 +124,7 @@ public class PlayerFire : MonoBehaviour
                 ParticleSystem ps = fragmentEft.GetComponent<ParticleSystem>();
 
                 //가져온 컴포넌트의 기능중 Play실행
-               ps.Play();
+                ps.Play();
 
                 ////맞은 녀석이 Enmey라면
                 //Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
@@ -147,6 +147,14 @@ public class PlayerFire : MonoBehaviour
                 {
                     // enemy에게 맞았다는 것을 알려준다
                     enemy.OnDamageProcess(ray.direction);
+                }
+
+                // 맞은 녀석이 enemy라면
+                Rikayon crab = hitInfo.transform.GetComponentInParent<Rikayon>();
+                if (crab) //참이면
+                {
+                    // enemy에게 맞았다는 것을 알려준다
+                    crab.OnDamageProcess(ray.direction);
                 }
 
             }
