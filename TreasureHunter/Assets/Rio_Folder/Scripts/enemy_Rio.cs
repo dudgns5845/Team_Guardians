@@ -219,8 +219,16 @@ public class enemy_Rio : MonoBehaviour
     // 필요속성 : 떨어지는 속도
     public float downSpeed = 2;
     // 완전히 없어지면 제거하자
+    public StageManager_Rio manager;
+    bool isAlive = true;
     private void Die()
     {
+        if (isAlive)
+        {
+            manager.minEnemy();
+            isAlive = false;
+        }
+
         // 2초정도 대기하고 
         //currentTime += Time.deltaTime;
         //if (currentTime > 2)
