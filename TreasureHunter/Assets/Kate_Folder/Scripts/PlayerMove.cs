@@ -168,11 +168,11 @@ public class PlayerMove : MonoBehaviour
             print(hp);
         }
     }
-
+    
     void Update()
     {
 
-        //게임 상태가 '게임중' 상태일 대만 조작할 수 잇게 한다. 
+        //게임 상태가 '게임중' 상태일때만 조작할 수 있게 한다. 
         if (GameManager.gm.gState != GameManager.GameState.Run)
         {
             return;
