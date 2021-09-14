@@ -9,6 +9,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     float currTime;
+
+    float createTime; 
+
     //게임 상태 UI 변수
     public GameObject gameLabel;
 
@@ -133,7 +136,7 @@ public class GameManager : MonoBehaviour
         // 시간이 흐르게 하자
         //currTime += Time.deltaTime;
 
-        //if (currTime > )
+       
 
         //만일 플레이어의 hp가 0 이하라면....
         if (player. hp <=0)
