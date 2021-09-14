@@ -125,13 +125,16 @@ public class PlayerMove : MonoBehaviour
     public float hp = 100;
 
     //최대 체력 변수 
-    int maxHP = 20;
+    int maxHP = 100;
 
     //hp 슬라이더 변수 
     public Slider hpSlider;
 
     //hit 효과 오브젝트
     public GameObject hiteffect;
+
+    [SerializeField]
+    private Text stateValue;
 
     public void DamangeAction(int damage)
     {
@@ -178,8 +181,10 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        //현재 플레이ㅓ hp(%)를 hp 슬라이더의 value 에 반영한다. 
+        //현재 플레이어 hp(%)를 hp 슬라이더의 value 에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
+
+        stateValue.text = hp +        "             /             "       + maxHP;
 
         CharacterController controller = GetComponent<CharacterController>();
         if (controller.isGrounded)
