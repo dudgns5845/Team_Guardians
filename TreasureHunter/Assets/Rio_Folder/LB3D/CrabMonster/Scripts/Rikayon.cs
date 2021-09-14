@@ -34,7 +34,7 @@ public class Rikayon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(hp);
+      
         switch (m_state)
         {
             case STATE.PATROL:
