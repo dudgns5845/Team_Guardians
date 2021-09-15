@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class SwordAttack_Rio : MonoBehaviour
 {
-
-   
-
     private void OnTriggerEnter(Collider other)
     {
         // 맞은 녀석이 enemy라면
