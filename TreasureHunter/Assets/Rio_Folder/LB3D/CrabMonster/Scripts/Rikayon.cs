@@ -34,7 +34,7 @@ public class Rikayon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(m_state);
+      
         switch (m_state)
         {
             case STATE.PATROL:
@@ -146,7 +146,7 @@ public class Rikayon : MonoBehaviour
 
     // 일정시간 기다렸다가 상태를 Idle 로 전환하고 싶다.
     // 필요속성 : damage 대기시간
-    float damageDelayTime = 1;
+    float damageDelayTime = 0.5f;
     private IEnumerator Damage(Vector3 shootDirection)
     {
         shootDirection.y = 0;
@@ -158,8 +158,9 @@ public class Rikayon : MonoBehaviour
 
         // 대기시간 만큼 기다렸다가 
         yield return new WaitForSeconds(damageDelayTime);
+        agent.enabled = true;
         // 상태를 Idle 로 전환
-        m_state = STATE.PATROL;
+        m_state = STATE.MOVE;
 
     }
 
@@ -170,6 +171,7 @@ public class Rikayon : MonoBehaviour
     public void OnDamageProcess(Vector3 shootDirection)
     {
         isMove = false;
+
         // 죽은 애는 또 피격처리 하고 싶지 않다.
         if (m_state == STATE.DIE)
         {
@@ -205,7 +207,15 @@ public class Rikayon : MonoBehaviour
         }
     }
 
-    void Die() { }
+    public StageManager_Rio manager;
+    bool isAlive = true;
+    void Die() {
+        if (isAlive)
+        {
+            manager.minEnemy();
+            isAlive = false;
+        }
+    }
 
 
 

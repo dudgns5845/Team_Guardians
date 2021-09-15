@@ -9,29 +9,29 @@ public class PlayerMove : MonoBehaviour
     ////Character Controller
     //CharacterController cc;
 
-    ////Á¡ÇÁÆÄ¿ö
+    ////ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½
     //public float jumpPower = 5;
 
-    ////y¼Óµµ
+    ////yï¿½Óµï¿½
     //public float yVelocity;
 
-    ////Áß·Â
+    ////ï¿½ß·ï¿½
     //float gravity = -20;
-    //float playerGravity = 0;       //ÇÃ·¹ÀÌ¾î Áß·ÂÀû¿ë¿¡ ÇÊ¿äÇÑ º¯¼ö
-    ////Á¡¼öÈ½¼ö
+    //float playerGravity = 0;       //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ß·ï¿½ï¿½ï¿½ï¿½ë¿¡ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    ////ï¿½ï¿½ï¿½ï¿½È½ï¿½ï¿½
     //int jumpCount;
 
-    ////ÃÖ´ë Á¡ÇÁÈ½¼ö
+    ////ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½È½ï¿½ï¿½
     //public int maxJumpCount = 2;
 
-    ////¼Ó·Â
+    ////ï¿½Ó·ï¿½
     //public float speed = 6;
     //public float runspeed = 10;
-    //public float moveSpeed = 6.0f;        //ÀÌµ¿ ¼Óµµ
-    //public float backmoveSpeed = 5.0f;    //µÚ·Î°¡´Â ¼Óµµ
+    //public float moveSpeed = 6.0f;        //ï¿½Ìµï¿½ ï¿½Óµï¿½
+    //public float backmoveSpeed = 5.0f;    //ï¿½Ú·Î°ï¿½ï¿½ï¿½ ï¿½Óµï¿½
 
 
-    //Vector3 moveDir = Vector3.zero; //ÇÃ·¹ÀÌ¾î ÀÌµ¿¹æÇâ
+    //Vector3 moveDir = Vector3.zero; //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½
 
     //CharacterController playerController;
 
@@ -51,21 +51,21 @@ public class PlayerMove : MonoBehaviour
 
     //    //if(input.GetkeyDown(KeyCode.W))
     //    //{
-    //    //    //¹æÇâÀ» ¿ÞÂÊ
+    //    //    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     //    //}
     //    //if(Input .GetKeyUp .A)
     //    //{
-    //    //    //¿ÞÂÊÀ¸·Î ¹æÇâÀ» ¾ø¾Ö°í
+    //    //    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½
     //    //}
 
-    //    //A.DÁÂ¿ì 
+    //    //A.Dï¿½Â¿ï¿½
     //    float h = Input.GetAxis("Horizontal");
-    //    //W.S ¾ÕµÚ
+    //    //W.S ï¿½Õµï¿½
     //    float v = Input.GetAxis("Vertical");
 
     //    anim.SetFloat("Speed", v * v + h * h);
 
-    //    //¹æÇâÀ» Á¤ÇÏ°í
+    //    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½
     //    Vector3 dirH = transform.right * h;
     //    Vector3 dirV = transform.forward * v;
     //    Vector3 dir = dirH + dirV;
@@ -73,7 +73,7 @@ public class PlayerMove : MonoBehaviour
 
     //    Jump(out dir.y);
 
-    //    //À§ ¹æÇâÀ¸·Î ¿òÁ÷ÀÌ°Ô ¸¸µå¼¼¿ä. P = P0+VT
+    //    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½å¼¼ï¿½ï¿½. P = P0+VT
     //    cc.Move(dir * speed * Time.deltaTime);
 
     //    if (Input.GetKey(KeyCode.LeftShift))
@@ -90,13 +90,13 @@ public class PlayerMove : MonoBehaviour
     //void Jump(out float dirY)
     //{
 
-    //    //¸¸¾à¿¡ ½ºÆäÀÌ½º¹Ù¸¦ ("Jump")¸¦ ´©¸£¸é
+    //    //ï¿½ï¿½ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½Ù¸ï¿½ ("Jump")ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //    if (Input.GetButtonDown("Jump"))       //|| Input.GetKeyDown(KeyCode.Space))
     //    {
-    //        //Á¡ÇÁ È½¼ö°¡ ÃÖ´ëÈ½¼ö Á¡ÇÁ º¸´Ù ÀÛÀ¸¸é
+    //        //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½È½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //        if (jumpCount < 1)
     //        {
-    //            //y¼Óµµ¸¦ jumpPower·Î ÇÑ´Ù. 
+    //            //yï¿½Óµï¿½ï¿½ï¿½ jumpPowerï¿½ï¿½ ï¿½Ñ´ï¿½.
     //            yVelocity = jumpPower;
     //            jumpCount++;  //2
 
@@ -104,9 +104,9 @@ public class PlayerMove : MonoBehaviour
     //        jumpCount = 0;
     //    }
 
-    //    //dirY¿¡ y¼Óµµ¸¦ ³Ö´Â´Ù. 
+    //    //dirYï¿½ï¿½ yï¿½Óµï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½.
     //    dirY = yVelocity;    //1.0.0 -> 1,-1,0
-    //    //y¼Óµµ¸¦ Áß·Â¸¸Å­ ´õÇØÁØ´Ù. 
+    //    //yï¿½Óµï¿½ï¿½ï¿½ ï¿½ß·Â¸ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
     //    yVelocity += gravity * Time.deltaTime;
 
     //}
@@ -121,16 +121,16 @@ public class PlayerMove : MonoBehaviour
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
 
-    //ÇÃ·¹ÀÌ¾î Ã¼·Â º¯¼ö 
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float hp = 100;
 
-    //ÃÖ´ë Ã¼·Â º¯¼ö 
+    //ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     int maxHP = 100;
 
-    //hp ½½¶óÀÌ´õ º¯¼ö 
+    //hp ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½
     public Slider hpSlider;
 
-    //hit È¿°ú ¿ÀºêÁ§Æ®
+    //hit È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     public GameObject hiteffect;
 
     [SerializeField]
@@ -139,23 +139,23 @@ public class PlayerMove : MonoBehaviour
     public void DamangeAction(int damage)
     {
 
-        //¿¡³Ê¹Ì °ø°Ý·Â¸¸Å­ ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀ» ±ï´Â´Ù 
+        //ï¿½ï¿½ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½Ý·Â¸ï¿½Å­ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½
         hp -= damage;
-        //¸¸ÀÏ ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀÌ 0º¸´Ù Å©¸é ÇÇ°ÝÈ¿°ú¸¦ Ãâ·ÂÇÑ´Ù. 
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½Ç°ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         if (hp>0)
         {
-            //ÇÇ°Ý ÀÌÆåÆ® ÄÚ¸£Æ¾À» ½ÃÀÛÇÑ´Ù. 
+            //ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ú¸ï¿½Æ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
             StartCoroutine(PlayHitEffect());
         }
         IEnumerator PlayHitEffect()
         {
-            //ÇÇ°Ý UI¸¦ È°¼ºÈ­ ÇÑ´Ù.
+            //ï¿½Ç°ï¿½ UIï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½Ñ´ï¿½.
             hiteffect.SetActive(true);
 
-            //0.3ÃÊ°£ ´ë±âÇÑ´Ù.
+            //0.3ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
             yield return new WaitForSeconds(0.3f);
 
-            //ÇÇ°Ý UI¸¦ ºñÈ°¼ºÈ­ ÇÑ´Ù. 
+            //ï¿½Ç°ï¿½ UIï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½Ñ´ï¿½.
             hiteffect.SetActive(false);
         }
     }
@@ -171,17 +171,17 @@ public class PlayerMove : MonoBehaviour
             print(hp);
         }
     }
-    
+
     void Update()
     {
 
-        //°ÔÀÓ »óÅÂ°¡ '°ÔÀÓÁß' »óÅÂÀÏ¶§¸¸ Á¶ÀÛÇÒ ¼ö ÀÖ°Ô ÇÑ´Ù. 
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½Ñ´ï¿½.
         if (GameManager.gm.gState != GameManager.GameState.Run)
         {
             return;
         }
 
-        //ÇöÀç ÇÃ·¹ÀÌ¾î hp(%)¸¦ hp ½½¶óÀÌ´õÀÇ value ¿¡ ¹Ý¿µÇÑ´Ù. 
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ hp(%)ï¿½ï¿½ hp ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ value ï¿½ï¿½ ï¿½Ý¿ï¿½ï¿½Ñ´ï¿½.
         hpSlider.value = (float)hp / (float)maxHP;
 
         stateValue.text = hp +  "     /      "  + maxHP;
