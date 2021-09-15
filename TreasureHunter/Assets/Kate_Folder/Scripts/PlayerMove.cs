@@ -184,7 +184,7 @@ public class PlayerMove : MonoBehaviour
         //현재 플레이어 hp(%)를 hp 슬라이더의 value 에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
 
-        stateValue.text = hp +        "             /             "       + maxHP;
+        stateValue.text = hp +  "     /      "  + maxHP;
 
         CharacterController controller = GetComponent<CharacterController>();
         if (controller.isGrounded)
