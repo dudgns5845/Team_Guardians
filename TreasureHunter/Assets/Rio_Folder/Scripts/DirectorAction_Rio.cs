@@ -29,6 +29,10 @@ public class DirectorAction_Rio : MonoBehaviour
             {
                 SceneManager.LoadScene(4);
             }
+            if (SceneManager.GetActiveScene().name == "Scene_05_Cinema")
+            {
+                SceneManager.LoadScene(6);
+            }
 
 
         }
