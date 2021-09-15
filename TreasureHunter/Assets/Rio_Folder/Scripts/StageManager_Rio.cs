@@ -17,7 +17,7 @@ public class StageManager_Rio : MonoBehaviour
     {
         if (EnemysCnt == 0)
         {
-            GoNextStage();
+            Invoke("GoNextStage", 2);
         }
     }
 
@@ -25,19 +25,19 @@ public class StageManager_Rio : MonoBehaviour
     //적을 모두 잡으면 현 스테이지 종료하는 함수
     void GoNextStage()
     {
-        if (EnemysCnt == 0)
+        if (SceneManager.GetActiveScene().name == "Scene_02_Play01")
         {
-            if (SceneManager.GetActiveScene().name == "Scene_02_Play01")
-            {
-                SceneManager.LoadScene(3);
-            }
+            SceneManager.LoadScene(3);
+        }
 
-            if (SceneManager.GetActiveScene().name == "Scene_04_Play")
-            {
-                SceneManager.LoadScene(5);
-            }
+        if (SceneManager.GetActiveScene().name == "Scene_04_Play")
+        {
+            SceneManager.LoadScene(5);
         }
     }
+
+
+
 
     //Enemy들이 STATE.DIE 상태일때마다 호출할 함수
     public void minEnemy()
