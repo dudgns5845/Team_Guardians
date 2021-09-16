@@ -36,7 +36,12 @@ public class enemy_Rio : MonoBehaviour
 
     void Update()
     {
-        
+
+        //게임 상태가 '게임중' 상태일 대만 조작할 수 잇게 한다. 
+        if (GameManager.gm.gState != GameManager.GameState.Run)
+        {
+            return;
+        }
 
         // 적의 기본 상태(목차)를 구성하고 싶다.
         // 만약 적의 상태가 Idle 이라면
@@ -221,12 +226,13 @@ public class enemy_Rio : MonoBehaviour
     // 완전히 없어지면 제거하자
     public StageManager_Rio manager;
     bool isAlive = true;
+    public Collider swordCollider;
     private void Die()
     {
-        if (isAlive)
+        swordCollider.enabled = false;
+       if(gameObject.name == "Boss")
         {
-            manager.minEnemy();
-            isAlive = false;
+            manager.Callme();
         }
 
         // 2초정도 대기하고 
