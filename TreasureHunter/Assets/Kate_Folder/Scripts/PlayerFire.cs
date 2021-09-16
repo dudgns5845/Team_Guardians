@@ -1,20 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-// Ä®ÈÖµÎ¸£±â
-// -> 3°³ ¾×¼ÇÁß ·£´ýÀ¸·Î 1°³ ¼±ÅÃÇØ¼­ ±×³à¼® Àç»ýÇÏ°Ô ÇÏ±â
+// Ä®ï¿½ÖµÎ¸ï¿½ï¿½ï¿½
+// -> 3ï¿½ï¿½ ï¿½×¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½×³à¼® ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï±ï¿½
 public class PlayerFire : MonoBehaviour
 {
+
+   public Image magazineImg;
+    public Text magazineText;
+
+    private AudioSource _audio;
+
+    public int maxBullet = 10;
+    public int remainingBullet = 10;
+
+    //public float reloadTime = 2.0f;
+    //private bool isReloading = false;
+
     public GameObject gunObj;
     public GameObject swordObj;
 
-    //ÃÑ¾Ë°øÀå
+    //ï¿½Ñ¾Ë°ï¿½ï¿½ï¿½
     public GameObject bulletFactory;
-    //ÃÑ±¸
+    //ï¿½Ñ±ï¿½
     public Transform firePos;
 
-    //ÆÄÆíÈ¿°ú
+    //ï¿½ï¿½ï¿½ï¿½È¿ï¿½ï¿½
     public GameObject fragmentEft;
     public GameObject ParticleSystem;
 
@@ -30,17 +43,17 @@ public class PlayerFire : MonoBehaviour
     int curFlash = 0;
     bool isFiring = false;
 
-    //¹«±â ¾ÆÀÌÄÜ ½ºÇÁ¶óÀÌÆ® º¯¼ö 
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     public GameObject weapon01;
     public GameObject weapon02;
 
-    //Crosshair ±¸Çö
+    //Crosshair ï¿½ï¿½ï¿½ï¿½
     public GameObject Crosshair;
 
 
-    
 
-    //
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +63,20 @@ public class PlayerFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //°ÔÀÓ »óÅÂ°¡ '°ÔÀÓÁß' »óÅÂÀÏ¶§¸¸ Á¶ÀÛÇÒ ¼ö ÀÖ°Ô ÇÑ´Ù. 
+        //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ fire ï¿½Ô¼ï¿½ È£ï¿½ï¿½
+        //if (!isReloading && Input.GetMouseButtonDown(0))
+        //{
+        //    --remainingBullet;
+        //    Fire();
+        //}
+
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ È£ï¿½ï¿½
+        //if (remainingBullet == 0)
+        //{
+        //    StartCoroutine(Reloading());
+        //}
+
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½Ñ´ï¿½.
         if (GameManager.gm.gState != GameManager.GameState.Run)
         {
             return;
@@ -62,138 +88,154 @@ public class PlayerFire : MonoBehaviour
             swordObj.SetActive(false);
             anim.runtimeAnimatorController = gunAnimController;
 
-            //1¹ø ½ºÇÁ¶óÀÌÆ®´Â È°¼ºÈ­ µÇ°í 2¹ø ½ºÇÁ¶óÀÌÆ®´Â ºñÈ°¼ºÈ­ µÈ´Ù. 
+            //1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½Ç°ï¿½ 2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½È´ï¿½.
             weapon01.SetActive(true);
             weapon02.SetActive(false);
 
-            //1¹ø ´­·¶À» ¶§ Crosshair È°¼ºÈ­µÇ°í
+            //1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Crosshair È°ï¿½ï¿½È­ï¿½Ç°ï¿½
             Crosshair.SetActive(true);
 
         }
-        if(Input .GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             swordObj.SetActive(true);
             gunObj.SetActive(false);
             anim.runtimeAnimatorController = swordAnimController;
 
-            //1¹ø ½ºÇÁ¶óÀÌÆ®´Â ºñÈ°¼ºÈ­ µÇ°í, 2¹ø ½ºÇÁ¶óÀÌÆ®´Â ºñÈ°¼ºÈ­ µÈ´Ù
+            //1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½Ç°ï¿½, 2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½È´ï¿½
             weapon01.SetActive(false);
             weapon02.SetActive(true);
 
-            //2¹ø ´­·¶À» ¶§ Crosshair ºñÈ°¼ºÈ­µÈ´Ù
+            //2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Crosshair ï¿½ï¿½È°ï¿½ï¿½È­ï¿½È´ï¿½
             Crosshair.SetActive(false);
         }
 
-        //¸¸¾à¿¡ fire1 ¹öÆ®À» ´©¸£¸é
+        //ï¿½ï¿½ï¿½à¿¡ fire1 ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Input.GetButtonDown("Fire1"))
         {
             //GunFire();
             SwordFire();
         }
 
-        //¸¸¾à¿¡ fire2 ¹öÆ°À» ´©¸£¸é (¸¶¿ì½º ¿À¸¥ÂÊ, ¿ÞÂÊ alt)
-        //Ä®À» µé°í ÀÖÀ» ¶§ µ¿ÀÛÇÏÁö ¾Ê´Â´Ù. 
-        if (gunObj.activeSelf && Input.GetButtonDown("Fire2"))
-        {
-            isFiring = true;
 
-            fireAnim.SetTrigger("Fire");
-            //Ä«¸Þ¶óÀ§Ä¡, Ä«¸Þ¶ó ¾Õ ¹æÇâÀ¸·Î ¹ß»çµÇ´Â Ray¸¦ ¸¸µç´Ù. 
-            Ray ray = new Ray(
-               Camera.main.transform.position,
-               Camera.main.transform.forward);
-            //¸ÂÀº À§Ä¡ÀÇ Á¤º¸
-            RaycastHit hitInfo;
+            magazineImg.fillAmount = (float)remainingBullet / (float)maxBullet;
+            UpdateBulletText();
 
-            //Ray¿¡ Ãæµ¹ÇÏ°í ½ÍÀº layer
-            int layerObs = 1 << LayerMask.NameToLayer("Obstacle");
-            int layerwall = 1 << LayerMask.NameToLayer("Wall");
-            int layer = 1 << LayerMask.NameToLayer("Player");
-
-            //Ray¸¦ ¹ß»ç½ÃÄÑ¼­ ¾îµò°¡¿¡ ºÎµúÇû´Ù¸é
-            if (Physics.Raycast(ray, out hitInfo, 1000, ~layer))
+            //ï¿½ï¿½ï¿½à¿¡ fire2 ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ alt)
+            //Ä®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+            if (gunObj.activeSelf && Input.GetButtonDown("Fire2"))
             {
-                
-                //¸¸µç È¿°ú¸¦ ¸ÂÀºÀ§Ä¡¿¡ ³õ´Â´Ù.
-                fragmentEft.transform.position = hitInfo.point;
+                isFiring = true;
 
-                //¸¸µçÈ¿°úÀÌ ¾Õ¹æÇâÀ¸¸£ ºÎµúÈù ¸éÀÇ ¼öÁ÷¸ÆÅÍ(Normal¹éÅÍ)·Î ÇÑ´Ù. 
-                fragmentEft.transform.forward = hitInfo.normal;
-                
-                //¸ÂÀº È¿°ú¿¡¼­ ParticleSystemÄÄÆ÷³ÍÆ® °¡Á®¿ÀÀÚ
-                ParticleSystem ps = fragmentEft.GetComponent<ParticleSystem>();
+                fireAnim.SetTrigger("Fire");
+                //Ä«ï¿½Þ¶ï¿½ï¿½ï¿½Ä¡, Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½Ç´ï¿½ Rayï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+                Ray ray = new Ray(
+                   Camera.main.transform.position,
+                   Camera.main.transform.forward);
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                RaycastHit hitInfo;
 
-                //°¡Á®¿Â ÄÄÆ÷³ÍÆ®ÀÇ ±â´ÉÁß Play½ÇÇà
-                ps.Play();
+                //Rayï¿½ï¿½ ï¿½æµ¹ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ layer
+                int layerObs = 1 << LayerMask.NameToLayer("Obstacle");
+                int layerwall = 1 << LayerMask.NameToLayer("Wall");
+                int layer = 1 << LayerMask.NameToLayer("Player");
 
-                ////¸ÂÀº ³à¼®ÀÌ Enmey¶ó¸é
-                //Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
-                //if (enemy)
-                //{
-                //    //EnemyÇÑÅ× ³Ê ¸Â¾Ò¾î.¶ó°í ¾Ë·ÁÁÖ°í ½Í´Ù. 
-                //    enemy.OnDamageProcess(ray.direction);
-                //}
-
-
-                //AudioSourceÄÄÆ÷³ÍÆ® °¡Á®¿ÀÀÚ
-                AudioSource audio = fragmentEft.GetComponent<AudioSource>();
-
-                //°¡Á®¿Â ÄÄÆ÷³ÍÆ®ÀÇ ±â´ÉÁß Play ½ÇÇà
-                audio.Play();
-
-                // ¸ÂÀº ³à¼®ÀÌ enemy¶ó¸é
-                enemy_Rio enemy = hitInfo.transform.GetComponent<enemy_Rio>();
-                if (enemy) //ÂüÀÌ¸é
+                //Rayï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ï¿½Ñ¼ï¿½ ï¿½ï¿½ï¿½ò°¡¿ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½Ù¸ï¿½
+                if (Physics.Raycast(ray, out hitInfo, 1000, ~layer))
                 {
-                    // enemy¿¡°Ô ¸Â¾Ò´Ù´Â °ÍÀ» ¾Ë·ÁÁØ´Ù
-                    enemy.OnDamageProcess(ray.direction);
-                }
 
-                // ¸ÂÀº ³à¼®ÀÌ enemy¶ó¸é
-                Rikayon crab = hitInfo.transform.GetComponentInParent<Rikayon>();
-                if (crab) //ÂüÀÌ¸é
-                {
-                    // enemy¿¡°Ô ¸Â¾Ò´Ù´Â °ÍÀ» ¾Ë·ÁÁØ´Ù
-                    crab.OnDamageProcess(ray.direction);
-                }
+                    //ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
+                    fragmentEft.transform.position = hitInfo.point;
 
-                // ¸ÂÀº ³à¼®ÀÌ enemy¶ó¸é
+                    //ï¿½ï¿½ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Normalï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½Ñ´ï¿½.
+                    fragmentEft.transform.forward = hitInfo.normal;
+
+                    //ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ParticleSystemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    ParticleSystem ps = fragmentEft.GetComponent<ParticleSystem>();
+
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Playï¿½ï¿½ï¿½ï¿½
+                    ps.Play();
+
+                    ////ï¿½ï¿½ï¿½ï¿½ ï¿½à¼®ï¿½ï¿½ Enmeyï¿½ï¿½ï¿½ï¿½
+                    //Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
+                    //if (enemy)
+                    //{
+                    //    //Enemyï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Â¾Ò¾ï¿½.ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ö°ï¿½ ï¿½Í´ï¿½.
+                    //    enemy.OnDamageProcess(ray.direction);
+                    //}
+
+
+                    //AudioSourceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    AudioSource audio = fragmentEft.GetComponent<AudioSource>();
+
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Play ï¿½ï¿½ï¿½ï¿½
+                    audio.Play();
+
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½à¼®ï¿½ï¿½ enemyï¿½ï¿½ï¿½ï¿½
                 Boss_Rio boss = hitInfo.transform.GetComponentInParent<Boss_Rio>();
-                if (boss) //ÂüÀÌ¸é
+                if (boss) //ï¿½ï¿½ï¿½Ì¸ï¿½
                 {
-                    // enemy¿¡°Ô ¸Â¾Ò´Ù´Â °ÍÀ» ¾Ë·ÁÁØ´Ù
+                    // enemyï¿½ï¿½ï¿½ï¿½ ï¿½Â¾Ò´Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ø´ï¿½
                     boss.OnDamageProcess(ray.direction);
                 }
 
             }
 
-            if (isFiring)
-            {
-                currentTime += Time.deltaTime;
-                if (currentTime > flashTime)
-                {
-                    GameObject flash = Instantiate(flashes[curFlash]);
-                    flash.transform.position = firePos.position;
-                    curFlash++;
-                    // ¸¸¾à flash °¡ ´Ù »ý¼ºµÆÀ¸¸é Á¦°Å
-                    if (curFlash >= flashes.Length)
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½à¼®ï¿½ï¿½ enemyï¿½ï¿½ï¿½ï¿½
+                    Rikayon crab = hitInfo.transform.GetComponentInParent<Rikayon>();
+                    if (crab) //ï¿½ï¿½ï¿½Ì¸ï¿½
                     {
-                        curFlash = 0;
-                        isFiring = false;
+                        // enemyï¿½ï¿½ï¿½ï¿½ ï¿½Â¾Ò´Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ø´ï¿½
+                        crab.OnDamageProcess(ray.direction);
+                    }
+
+                }
+
+                if (isFiring)
+                {
+                    currentTime += Time.deltaTime;
+                    if (currentTime > flashTime)
+                    {
+                        GameObject flash = Instantiate(flashes[curFlash]);
+                        flash.transform.position = firePos.position;
+                        curFlash++;
+                        // ï¿½ï¿½ï¿½ï¿½ flash ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                        if (curFlash >= flashes.Length)
+                        {
+                            curFlash = 0;
+                            isFiring = false;
+                        }
                     }
                 }
+
             }
-
         }
+
+
+    //IEnumerator Reloading()
+    //{
+    //   isReloading = true;
+
+    //yield return new WaitForSeconds(0.2f);
+
+    //    isReloading = false;
+    //
+    //    UpdateBulletText();
+
+    //}
+
+    private void UpdateBulletText()
+    {
+        magazineImg.fillAmount = 1.0f;
+        remainingBullet = maxBullet;
+        magazineText.text = string.Format(remainingBullet  + "   /    " + maxBullet);
+
     }
-
-
-
 
     void SwordFire()
     {
-        // Ä®ÈÖµÎ¸£±â
-        // -> 3°³ ¾×¼ÇÁß ·£´ýÀ¸·Î 1°³ ¼±ÅÃÇØ¼­ ±×³à¼® Àç»ýÇÏ°Ô ÇÏ±â
+        // Ä®ï¿½ÖµÎ¸ï¿½ï¿½ï¿½
+        // -> 3ï¿½ï¿½ ï¿½×¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½×³à¼® ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï±ï¿½
         int rand = Random.Range(0, 3);
         switch (rand)
         {
@@ -210,22 +252,21 @@ public class PlayerFire : MonoBehaviour
         }
 
 
+
+
+        //void GunFire()
+        //{
+        //    anim.Play("Idle");
+        //    // ï¿½Ìµï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ÈµÇµï¿½ï¿½ï¿½
+        //    fireAnim.SetTrigger("Fire");
+
+        //    //gun.Play();
+        //    //ï¿½Ñ¾Ë°ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÆµÐ´ï¿½.
+        //    GameObject bullet = Instantiate(bulletFactory);
+        //    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //    bullet.transform.forward = firePos.forward; //ï¿½ï¿½ï¿½à¿¡ ï¿½Ä¶ï¿½ È­ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ forwardï¿½ï¿½ -ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
+        //                                                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
+        //    bullet.transform.position = firePos.position;
+        //}
     }
-
-    //void GunFire()
-    //{
-    //    anim.Play("Idle");
-    //    // ÀÌµ¿ÁßÀÏ¶§´Â ÃÑ ¹ß»ç ¾ÈµÇµµ·Ï
-    //    fireAnim.SetTrigger("Fire");
-
-    //    //gun.Play();
-    //    //ÃÑ¾Ë°øÀå¿¡¼­ ÃÑ¾ËÀ» ³õ¾ÆµÐ´Ù. 
-    //    GameObject bullet = Instantiate(bulletFactory);
-    //    //¸¸µé¾îÁø ÃÑ¾ËÀÇ ¾Õ¹æÇâÀ» ÃÑ±¸¿¡ ¾Õ¹æÇâÀ¸·Î ¼ÂÆÃ
-    //    bullet.transform.forward = firePos.forward; //¸¸¾à¿¡ ÆÄ¶õ È­»ìÇ¥°¡ ÀÚ½ÅÂÊÀ¸·Î ÇâÇØ ÀÖÀ»¶© forward¿¡ -¸¦ ºÙÀÎ´Ù. 
-    //                                                //»ý¼ºµÈ ÃÑ¾ËÀ» ÃÑ±¸¿¡ ³õ´Â´Ù.
-    //    bullet.transform.position = firePos.position;
-    //}
 }
-
-
