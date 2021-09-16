@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 //map상의 적을 다 잡으면 스테이지를 클리한 것으로 판정하고 싶다
 public class StageManager_Rio : MonoBehaviour
 {
+    public GameObject TXT_Clear;
     public List<GameObject> Enemys;
     int EnemysCnt;
     private void Start()
@@ -17,10 +18,22 @@ public class StageManager_Rio : MonoBehaviour
     {
         if (EnemysCnt == 0)
         {
+            Time.timeScale = 0.5f;
             Invoke("GoNextStage", 2);
         }
     }
 
+   public void Callme()
+    {
+        TXT_Clear.SetActive(true);
+        //게임 상태가 '게임중' 상태일 대만 조작할 수 잇게 한다. 
+        if (GameManager.gm.gState != GameManager.GameState.Pause)
+        {
+            return;
+        }
+
+        Invoke("GoNextStage", 4);
+    }
 
     //적을 모두 잡으면 현 스테이지 종료하는 함수
     void GoNextStage()
@@ -36,6 +49,12 @@ public class StageManager_Rio : MonoBehaviour
         }
     }
 
+    public void Restart()
+    {
+        print("호출!!");
+        //현재씬 번호를 다시 로드한다
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 
 

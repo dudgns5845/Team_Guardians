@@ -129,6 +129,8 @@ public class GameManager : MonoBehaviour
         gState = GameState.Run;
     }
 
+    
+    public GameObject btn;
     // Update is called once per frame
     void Update()
     {
@@ -155,11 +157,13 @@ public class GameManager : MonoBehaviour
             //상태 텍스트이 색상을 붉은 색으로 한다. 
             gameText.color = new Color32(255, 0, 0, 255);
 
+
+            btn.SetActive(true);
             //상태 텍스트의 자식 오브젝트의 트렌스폼 컴포넌트를 가져온다
-           Transform buttons = gameText.transform.GetChild(0);
+           //Transform buttons = gameText.transform.GetChild(0);
 
             //버튼 오브젝트를 활성화한다
-           buttons.gameObject.SetActive(true);
+           //buttons.gameObject.SetActive(true);
 
             //마우스 활성화 함수를 실행한다.
             //Cursorlock이라는 스크립트를 불러오기
