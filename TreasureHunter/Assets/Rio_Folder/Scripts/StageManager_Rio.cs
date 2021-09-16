@@ -18,6 +18,8 @@ public class StageManager_Rio : MonoBehaviour
     {
         if (EnemysCnt == 0)
         {
+            TXT_Clear.SetActive(true);
+            GameManager.gm.gState = GameManager.GameState.Pause;
             Invoke("GoNextStage", 2);
         }
     }
