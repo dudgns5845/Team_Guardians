@@ -18,7 +18,7 @@ public class StageManager_Rio : MonoBehaviour
     {
         if (EnemysCnt == 0)
         {
-            Time.timeScale = 0.5f;
+            //Time.timeScale = 0.5f;
             Invoke("GoNextStage", 2);
         }
     }
