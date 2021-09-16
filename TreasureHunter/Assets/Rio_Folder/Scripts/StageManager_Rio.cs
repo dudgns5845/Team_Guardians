@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//map»óÀÇ ÀûÀ» ´Ù ÀâÀ¸¸é ½ºÅ×ÀÌÁö¸¦ Å¬¸®ÇÑ °ÍÀ¸·Î ÆÇÁ¤ÇÏ°í ½Í´Ù
+//mapï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Í´ï¿½
 public class StageManager_Rio : MonoBehaviour
 {
     public GameObject TXT_Clear;
@@ -18,7 +18,8 @@ public class StageManager_Rio : MonoBehaviour
     {
         if (EnemysCnt == 0)
         {
-            //Time.timeScale = 0.5f;
+            TXT_Clear.SetActive(true);
+            GameManager.gm.gState = GameManager.GameState.Pause;
             Invoke("GoNextStage", 2);
         }
     }
@@ -26,16 +27,13 @@ public class StageManager_Rio : MonoBehaviour
    public void Callme()
     {
         TXT_Clear.SetActive(true);
-        //°ÔÀÓ »óÅÂ°¡ '°ÔÀÓÁß' »óÅÂÀÏ ´ë¸¸ Á¶ÀÛÇÒ ¼ö ÀÕ°Ô ÇÑ´Ù. 
-        if (GameManager.gm.gState != GameManager.GameState.Pause)
-        {
-            return;
-        }
+        GameManager.gm.gState = GameManager.GameState.Pause;
+
 
         Invoke("GoNextStage", 4);
     }
 
-    //ÀûÀ» ¸ðµÎ ÀâÀ¸¸é Çö ½ºÅ×ÀÌÁö Á¾·áÇÏ´Â ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     void GoNextStage()
     {
         if (SceneManager.GetActiveScene().name == "Scene_02_Play01")
@@ -51,14 +49,14 @@ public class StageManager_Rio : MonoBehaviour
 
     public void Restart()
     {
-        print("È£Ãâ!!");
-        //ÇöÀç¾À ¹øÈ£¸¦ ´Ù½Ã ·ÎµåÇÑ´Ù
+        print("È£ï¿½ï¿½!!");
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Îµï¿½ï¿½Ñ´ï¿½
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
 
-    //EnemyµéÀÌ STATE.DIE »óÅÂÀÏ¶§¸¶´Ù È£ÃâÇÒ ÇÔ¼ö
+    //Enemyï¿½ï¿½ï¿½ï¿½ STATE.DIE ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     public void minEnemy()
     {
         EnemysCnt--;
