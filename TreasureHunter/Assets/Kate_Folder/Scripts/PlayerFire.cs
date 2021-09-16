@@ -165,6 +165,22 @@ public class PlayerFire : MonoBehaviour
                     boss.OnDamageProcess(ray.direction);
                 }
 
+                // 맞은 녀석이 enemy라면
+                FinalStageEnemy_Crab_Rio crab_1 = hitInfo.transform.GetComponentInParent<FinalStageEnemy_Crab_Rio>();
+                if (crab_1) //참이면
+                {
+                    // enemy에게 맞았다는 것을 알려준다
+                    crab_1.OnDamageProcess(ray.direction);
+                }
+
+                FinalStageEnemy_Skull_Rio skull_1 = hitInfo.transform.GetComponentInParent<FinalStageEnemy_Skull_Rio>();
+                if (skull_1) //참이면
+                {
+                    // enemy에게 맞았다는 것을 알려준다
+                    skull_1.OnDamageProcess(ray.direction);
+                }
+
+
             }
 
             if (isFiring)

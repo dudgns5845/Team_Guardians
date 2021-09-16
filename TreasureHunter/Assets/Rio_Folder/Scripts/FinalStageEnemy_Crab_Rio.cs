@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Boss_Rio : MonoBehaviour
+public class FinalStageEnemy_Crab_Rio : MonoBehaviour
 {
     Animator animator;
     GameObject target;
-    
+   
     NavMeshAgent agent;
 
     enum STATE
     {
-        IDLE,//대기
+       IDLE,//정찰
         MOVE, //따라감
         ATTACK,//공격
         DAMAGE,//부상
@@ -28,12 +28,18 @@ public class Boss_Rio : MonoBehaviour
         target = GameObject.FindWithTag("Player");
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(m_state);
+        //게임 상태가 '게임중' 상태일 대만 조작할 수 잇게 한다. 
+        if (GameManager.gm.gState != GameManager.GameState.Run)
+        {
+            return;
+        }
+
         switch (m_state)
         {
             case STATE.IDLE:
@@ -53,18 +59,21 @@ public class Boss_Rio : MonoBehaviour
     }
 
 
-    
-    
+    //일반상태일때는 player가 일정 반경에 오기 전까지는 
+    //지정 구역을 돌아다닌다
+    //중간중간 멈춰서 표효하는 애니메이션을 재생하고
+    //다시 걷는다
+    //그러다 플레이어가 일정 간격에 오면 공격모드로 전환하고
+    //따라간다
+    int idx;
     bool isMove = false;
-    public float attackRange = 20f;
-    public float followRange = 60f;
+    public float attackRange = 40f;
+    public float followRange = 100f;
     void Idle()
     {
-        agent.isStopped = true; //멈춤
-
         if (!isMove)
         {
-            animator.SetTrigger("Idle");
+            animator.SetTrigger("Walk_Cycle_1");
             isMove = true;
         }
 
@@ -74,13 +83,11 @@ public class Boss_Rio : MonoBehaviour
         if (dir.magnitude < followRange)
         {
             agent.stoppingDistance = 80f;
-            m_state = STATE.ATTACK;
-            animator.SetTrigger("Shout");
-           
-            isMove = true;
+            m_state = STATE.MOVE;
+            isMove = false;
         }
 
-      
+       
     }
 
     private void Move()
@@ -89,8 +96,7 @@ public class Boss_Rio : MonoBehaviour
         agent.destination = target.transform.position;
         if (!isMove)
         {
-            animator.SetTrigger("Walk");
-            
+            animator.SetTrigger("Walk_Cycle_1");
             isMove = true;
         }
 
@@ -99,7 +105,6 @@ public class Boss_Rio : MonoBehaviour
 
         if (dir.magnitude < attackRange)
         {
-            
             m_state = STATE.ATTACK;
             isMove = false;
         }
@@ -121,7 +126,7 @@ public class Boss_Rio : MonoBehaviour
         if (attackCnt > attackTime)
         {
 
-            int idx = Random.Range(1,4);
+            int idx = Random.Range(1, 6);
             animator.SetTrigger("Attack_" + idx);
             attackCnt = 0;
 
@@ -140,10 +145,10 @@ public class Boss_Rio : MonoBehaviour
     {
         shootDirection.y = 0;
         //transform.position += shootDirection * 2;
-        transform.position = Vector3.Lerp(transform.position, shootDirection * 4, Time.deltaTime);
+        //transform.position = Vector3.Lerp(transform.position, shootDirection * 4, Time.deltaTime);
         m_state = STATE.DAMAGE;
         // animation 의 상태를 피격으로
-        animator.SetTrigger("Damage");
+        animator.SetTrigger("Take_Damage_1");
 
         // 대기시간 만큼 기다렸다가 
         yield return new WaitForSeconds(damageDelayTime);
@@ -196,15 +201,12 @@ public class Boss_Rio : MonoBehaviour
         }
     }
 
-    public StageManager_Rio manager;
-    bool isAlive = true;
+   
     void Die()
     {
-        if (isAlive)
-        {
-            manager.minEnemy();
-            isAlive = false;
-        }
+       
     }
+
+
 
 }

@@ -18,7 +18,6 @@ public class StageManager_Rio : MonoBehaviour
     {
         if (EnemysCnt == 0)
         {
-            Time.timeScale = 0.5f;
             Invoke("GoNextStage", 2);
         }
     }
@@ -26,11 +25,8 @@ public class StageManager_Rio : MonoBehaviour
    public void Callme()
     {
         TXT_Clear.SetActive(true);
-        //게임 상태가 '게임중' 상태일 대만 조작할 수 잇게 한다. 
-        if (GameManager.gm.gState != GameManager.GameState.Pause)
-        {
-            return;
-        }
+        GameManager.gm.gState = GameManager.GameState.Pause;
+        
 
         Invoke("GoNextStage", 4);
     }
