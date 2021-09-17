@@ -140,7 +140,7 @@ public class Boss_Rio : MonoBehaviour
     {
         shootDirection.y = 0;
         //transform.position += shootDirection * 2;
-        transform.position = Vector3.Lerp(transform.position, shootDirection * 4, Time.deltaTime);
+        //transform.position = Vector3.Lerp(transform.position, shootDirection * 4, Time.deltaTime);
         m_state = STATE.DAMAGE;
         // animation 의 상태를 피격으로
         animator.SetTrigger("Damage");

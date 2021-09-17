@@ -8,6 +8,10 @@ public class Boss_EFT_Sound_Rio : MonoBehaviour
 
     public List<AudioClip> clips;
 
+
+    public ParticleSystem ps;
+    public Transform rPos;
+
     private void Start()
     {
         player = GetComponent<AudioSource>();
@@ -20,5 +24,11 @@ public class Boss_EFT_Sound_Rio : MonoBehaviour
     public void BossSound(int idx)
     {
         player.PlayOneShot(clips[idx]);
+    }
+
+    public void psPlay()
+    {
+        ps.transform.position = rPos.position;
+        ps.Play();
     }
 }
