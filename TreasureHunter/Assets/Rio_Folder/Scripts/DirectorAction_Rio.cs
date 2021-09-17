@@ -33,7 +33,10 @@ public class DirectorAction_Rio : MonoBehaviour
             {
                 SceneManager.LoadScene(6);
             }
-
+            if (SceneManager.GetActiveScene().name == "Scene_07_FinalCinema") 
+            {
+                SceneManager.LoadScene(0);
+            }
 
         }
     }

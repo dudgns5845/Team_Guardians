@@ -200,11 +200,7 @@ public class Boss_Rio : MonoBehaviour
     bool isAlive = true;
     void Die()
     {
-        if (isAlive)
-        {
-            manager.minEnemy();
-            isAlive = false;
-        }
+        manager.Callme();
     }
 
 }

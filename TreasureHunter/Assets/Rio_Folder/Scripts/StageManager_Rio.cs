@@ -45,6 +45,11 @@ public class StageManager_Rio : MonoBehaviour
         {
             SceneManager.LoadScene(5);
         }
+
+        if (SceneManager.GetActiveScene().name == "Scene_06_BossPlay")
+        {
+            SceneManager.LoadScene(7);
+        }
     }
 
     public void Restart()
