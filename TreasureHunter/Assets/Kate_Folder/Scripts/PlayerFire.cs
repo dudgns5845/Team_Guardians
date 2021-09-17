@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 칼휘두르기
-// -> 3개 액션중 랜덤으로 1개 선택해서 그녀석 재생하게 하기
+// 칼휘?�르�?
+// -> 3�??�션�??�덤?�로 1�??�택?�서 그�????�생?�게 ?�기
 public class PlayerFire : MonoBehaviour
 {
     public GameObject gunObj;
@@ -14,7 +14,7 @@ public class PlayerFire : MonoBehaviour
     //총구
     public Transform firePos;
 
-    //파편효과
+    //?�편?�과
     public GameObject fragmentEft;
     public GameObject ParticleSystem;
 
@@ -30,7 +30,7 @@ public class PlayerFire : MonoBehaviour
     int curFlash = 0;
     bool isFiring = false;
 
-    //무기 아이콘 스프라이트 변수 
+    //무기 ?�이�??�프?�이??변??
     public GameObject weapon01;
     public GameObject weapon02;
 
@@ -50,7 +50,7 @@ public class PlayerFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //게임 상태가 '게임중' 상태일때만 조작할 수 있게 한다. 
+        //게임 ?�태가 '게임�? ?�태?�때�?조작?????�게 ?�다. 
         if (GameManager.gm.gState != GameManager.GameState.Run)
         {
             return;
@@ -62,11 +62,11 @@ public class PlayerFire : MonoBehaviour
             swordObj.SetActive(false);
             anim.runtimeAnimatorController = gunAnimController;
 
-            //1번 스프라이트는 활성화 되고 2번 스프라이트는 비활성화 된다. 
+            //1�??�프?�이?�는 ?�성???�고 2�??�프?�이?�는 비활?�화 ?�다. 
             weapon01.SetActive(true);
             weapon02.SetActive(false);
 
-            //1번 눌렀을 때 Crosshair 활성화되고
+            //1�??��?????Crosshair ?�성?�되�?
             Crosshair.SetActive(true);
 
         }
@@ -76,92 +76,92 @@ public class PlayerFire : MonoBehaviour
             gunObj.SetActive(false);
             anim.runtimeAnimatorController = swordAnimController;
 
-            //1번 스프라이트는 비활성화 되고, 2번 스프라이트는 비활성화 된다
+            //1�??�프?�이?�는 비활?�화 ?�고, 2�??�프?�이?�는 비활?�화 ?�다
             weapon01.SetActive(false);
             weapon02.SetActive(true);
 
-            //2번 눌렀을 때 Crosshair 비활성화된다
+            //2�??��?????Crosshair 비활?�화?�다
             Crosshair.SetActive(false);
         }
 
-        //만약에 fire1 버트을 누르면
+        //만약??fire1 버트???�르�?
         if (Input.GetButtonDown("Fire1"))
         {
             //GunFire();
             SwordFire();
         }
 
-        //만약에 fire2 버튼을 누르면 (마우스 오른쪽, 왼쪽 alt)
-        //칼을 들고 있을 때 동작하지 않는다. 
+        //만약??fire2 버튼???�르�?(마우???�른�? ?�쪽 alt)
+        //칼을 ?�고 ?�을 ???�작?��? ?�는?? 
         if (gunObj.activeSelf && Input.GetButtonDown("Fire2"))
         {
             isFiring = true;
 
             fireAnim.SetTrigger("Fire");
-            //카메라위치, 카메라 앞 방향으로 발사되는 Ray를 만든다. 
+            //카메?�위�? 카메????방향?�로 발사?�는 Ray�?만든?? 
             Ray ray = new Ray(
                Camera.main.transform.position,
                Camera.main.transform.forward);
-            //맞은 위치의 정보
+            //맞�? ?�치???�보
             RaycastHit hitInfo;
 
-            //Ray에 충돌하고 싶은 layer
+            //Ray??충돌?�고 ?��? layer
             int layerObs = 1 << LayerMask.NameToLayer("Obstacle");
             int layerwall = 1 << LayerMask.NameToLayer("Wall");
             int layer = 1 << LayerMask.NameToLayer("Player");
 
-            //Ray를 발사시켜서 어딘가에 부딪혔다면
+            //Ray�?발사?�켜???�딘가??부?�혔?�면
             if (Physics.Raycast(ray, out hitInfo, 1000, ~layer))
             {
 
-                //만든 효과를 맞은위치에 놓는다.
+                //만든 ?�과�?맞�??�치???�는??
                 fragmentEft.transform.position = hitInfo.point;
 
-                //만든효과이 앞방향으르 부딪힌 면의 수직맥터(Normal백터)로 한다. 
+                //만든?�과???�방?�으�?부?�힌 면의 ?�직맥터(Normal백터)�??�다. 
                 fragmentEft.transform.forward = hitInfo.normal;
 
-                //맞은 효과에서 ParticleSystem컴포넌트 가져오자
+                //맞�? ?�과?�서 ParticleSystem컴포?�트 가?�오??
                 ParticleSystem ps = fragmentEft.GetComponent<ParticleSystem>();
 
-                //가져온 컴포넌트의 기능중 Play실행
+                //가?�온 컴포?�트??기능�?Play?�행
                 ps.Play();
 
-                ////맞은 녀석이 Enmey라면
+                ////맞�? ?�?�이 Enmey?�면
                 //Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
                 //if (enemy)
                 //{
-                //    //Enemy한테 너 맞았어.라고 알려주고 싶다. 
+                //    //Enemy?�테 ??맞았???�고 ?�려주고 ?�다. 
                 //    enemy.OnDamageProcess(ray.direction);
                 //}
 
 
-                //AudioSource컴포넌트 가져오자
+                //AudioSource컴포?�트 가?�오??
                 AudioSource audio = fragmentEft.GetComponent<AudioSource>();
 
-                //가져온 컴포넌트의 기능중 Play 실행
+                //가?�온 컴포?�트??기능�?Play ?�행
                 audio.Play();
 
-                // 맞은 녀석이 enemy라면
+                // 맞�? ?�?�이 enemy?�면
                 enemy_Rio enemy = hitInfo.transform.GetComponent<enemy_Rio>();
-                if (enemy) //참이면
+                if (enemy) //참이�?
                 {
-                    // enemy에게 맞았다는 것을 알려준다
+                    // enemy?�게 맞았?�는 것을 ?�려준??
                     enemy.OnDamageProcess(ray.direction);
                 }
 
-                // 맞은 녀석이 enemy라면
+                // 맞�? ?�?�이 enemy?�면
                 Rikayon crab = hitInfo.transform.GetComponentInParent<Rikayon>();
-                if (crab) //참이면
+                if (crab) //참이�?
                 {
-                    // enemy에게 맞았다는 것을 알려준다
+                    // enemy?�게 맞았?�는 것을 ?�려준??
                     crab.OnDamageProcess(ray.direction);
                 }
 
-                // 맞은 녀석이 enemy라면
+                // 맞�? ?�?�이 enemy?�면
                 Boss_Rio boss = hitInfo.transform.GetComponentInParent<Boss_Rio>();
-                if (boss) //참이면
+                if (boss) //참이�?
                 {
-                    // enemy에게 맞았다는 것을 알려준다
+                    // enemy?�게 맞았?�는 것을 ?�려준??
                     boss.OnDamageProcess(ray.direction);
                 }
 
@@ -191,7 +191,7 @@ public class PlayerFire : MonoBehaviour
                     GameObject flash = Instantiate(flashes[curFlash]);
                     flash.transform.position = firePos.position;
                     curFlash++;
-                    // 만약 flash 가 다 생성됐으면 제거
+                    // 만약 flash 가 ???�성?�으�??�거
                     if (curFlash >= flashes.Length)
                     {
                         curFlash = 0;
@@ -208,8 +208,8 @@ public class PlayerFire : MonoBehaviour
 
     void SwordFire()
     {
-        // 칼휘두르기
-        // -> 3개 액션중 랜덤으로 1개 선택해서 그녀석 재생하게 하기
+        // 칼휘?�르�?
+        // -> 3�??�션�??�덤?�로 1�??�택?�서 그�????�생?�게 ?�기
         int rand = Random.Range(0, 3);
         switch (rand)
         {
@@ -231,15 +231,15 @@ public class PlayerFire : MonoBehaviour
     //void GunFire()
     //{
     //    anim.Play("Idle");
-    //    // 이동중일때는 총 발사 안되도록
+    //    // ?�동중일?�는 �?발사 ?�되?�록
     //    fireAnim.SetTrigger("Fire");
 
     //    //gun.Play();
-    //    //총알공장에서 총알을 놓아둔다. 
+    //    //총알공장?�서 총알???�아?�다. 
     //    GameObject bullet = Instantiate(bulletFactory);
-    //    //만들어진 총알의 앞방향을 총구에 앞방향으로 셋팅
-    //    bullet.transform.forward = firePos.forward; //만약에 파란 화살표가 자신쪽으로 향해 있을땐 forward에 -를 붙인다. 
-    //                                                //생성된 총알을 총구에 놓는다.
+    //    //만들?�진 총알???�방?�을 총구???�방?�으�??�팅
+    //    bullet.transform.forward = firePos.forward; //만약???��? ?�살?��? ?�신쪽으�??�해 ?�을??forward??-�?붙인?? 
+    //                                                //?�성??총알??총구???�는??
     //    bullet.transform.position = firePos.position;
     //}
 }
